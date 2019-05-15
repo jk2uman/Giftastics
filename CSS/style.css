@@ -1,0 +1,31 @@
+body {
+    background-image: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0357/1540/rkonoha-12-10_shop_preview.jpg");
+    width: 100%;
+  }
+  button {
+    padding: 0 10px;
+    margin: 0 10px;
+    border: 1px solid blue;
+    height: 30px;
+    font-size: 20px;
+    width: 150px;
+    background: green;
+    text-align: center;
+  }
+  form {
+    font-size: 25px;
+  }
+  p {
+    font-size: 20px;
+    color: rgb(107, 233, 128);
+  }
+  label {
+    font-size: 25px;
+    font-weight: bold;
+    color:rgb(107, 233, 128);
+  }
+  .container-fluid {
+    background-color: rgba(146, 32, 32, 0.979);
+    max-width: 1000px;
+    width: 100%;
+  }

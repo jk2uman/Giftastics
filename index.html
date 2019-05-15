@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Naruto Times</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./CSS/style.css">
+        <link rel="stylesheet" href="./CSS/reset.css">
+    </head> 
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="button"></div>
+                <button class="press" data-character="Naruto">Naruto</button>
+                <button class="press" data-character="Sasuke">Sasuke</button>
+                <button class="press" data-character="Kakashi">Kakashi</button>
+                <button class="press" data-character="Itachi">Itachi</button>
+                <button class="press" data-character="Kyubi">Kyubi</button>
+                </div>         
+                    <!-- This form will be where users input data about Naruto -->
+                    <form id="naruto-form">
+                    <label for="naruto-input">Search for any character in the Naruto Series</label>
+                    <input id="newNarutoInput" type="text" class="form control" placeholder="Character" value="text">
+                    <button id="addNarutoBtn" class="btn btn-primary mb-2" type="button">Search</button>
+                    <!-- This button will trigger our search call -->
+                            
+                    </form>
+                            
+                <div class="col-md-12">   
+                    <div id="gifs-appear-here"></div>
+                </div>
+            </div>
+        </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script>
+            //Onclick for Naruto Search Engine
+            $("#addNarutoBtn").on("click", function() {
+                var addCharacter = $("#newNarutoInput").val()
+                var search = $("<button>")
+                $(search).addClass("press")
+                $(search).attr("data-character", addCharacter)    
+                $(search).text(addCharacter)
+                $(".row").append(search)
+                console.log(search);
+                console.log($(search).prop("class"))
+                
+            });
+            $(document).on('click', '.press', function() {
+                var character = $(this).attr("data-character")
+                console.log("press");
+                var queryURL = "https:api.giphy.com/v1/gifs/search?api_key=Kb48PxWjm5vKNWf7Aa7LXa6pWV1Ljntf&q=" + character + "&limit=10&offset=0&rating=PG&lang=en";
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+                }).then(function(response) {
+                  var results = response.data;
+          for (var i = 0; i < results.length; i++) {
+            console.log(results);
+            var gifDiv = $("<div>");
+              
+              var rating = results[i].rating;
+             
+              var p = $("<p>").text("Rating: " + rating);
+             
+              var characterImage = $("<img>");
+            
+              characterImage.attr("src", results[i].images.fixed_height_still.url);
+            
+              gifDiv.append(p);
+              gifDiv.append(characterImage);
+                
+              $("#gifs-appear-here").prepend(gifDiv);
+              
+            }
+            $('img').on('click', function() {
+
+                  var src = $(this).attr("src");
+                  $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+                    console.log(src);
+                }); 
+            })
+           
+    });
+            </script>
+        </div>
+    </body>
+</html>
