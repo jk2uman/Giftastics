@@ -1,2 +1,7 @@
 # Giftastics
-A Giphy that has everything about each Naruto Character
+# A Giphy app that has everything about characters from the japanese anime franchise Naruto
+# The Technologies include: 
+# HTML
+# CSS
+# JQUERY
+# JAVASCRIPT
